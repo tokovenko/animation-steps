@@ -1,0 +1,214 @@
+header .menu .current {
+    background-color: #bacad6;
+}
+header .top-bar-right button  {
+    margin-bottom: 0;
+    padding: 0.7em 1em;
+}
+h1.subheader {
+    font-size: 2.3em;
+    margin: 0.4em 0;
+}
+.code-block {
+    margin-top: 1em;
+}
+    .code-block code {
+        display: block;
+    }
+    .code-block pre {
+        margin-top: 1em;
+    }
+
+#box {
+  background-color: #bb7d7d;
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  transition-property: top, left, width, height, background-color, transform;
+  transition-duration: 1s, 1s, 1s, 1s, 1s, 1s;
+  left: 0px;
+  top: 0px;
+  transform: rotateZ(0deg);
+}
+#box.active {
+  width: 300px;
+  height: 150px;
+  transform: rotateZ(-30deg);
+
+}
+#box.run {
+  left: 100px;
+  top: 100px;
+}
+#box.color {
+  background-color: #e0c0c3;
+}
+#box.back {
+  left: 0px;
+  top: 0px;
+  transform: rotateZ(360deg);
+}
+
+
+#text-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 11px;
+  transition: all 1s;
+  color: #000000;
+}
+#text-box.big {
+  font-size: 20px;
+}
+#text-box.pos {
+  top: 50px;
+  left: 50px;
+}
+#text-box.red {
+  color: #ed5c65;
+}
+#text-box.black {
+  color: #000000;
+}
+
+
+
+
+#page {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+    #rigth-box,
+    #left-box {
+        position: absolute;
+        top: -140px;
+        transition: top 2s, left 0.5s, right 0.5s, width 1s, height 1s, background 1s, box-shadow 1s;
+        width: 5px;
+        height: 100px;
+        background: #000000;
+        box-shadow: 0px 0px 0px grey;
+        overflow: hidden;
+    }
+    #left-box {
+        left: 280px;
+    }
+    #rigth-box {
+        right: 280px;
+    }
+    #rigth-box.active,
+    #left-box.active {
+        top: 200px;
+    }
+    #rigth-box.open,
+    #left-box.open {
+        width: 250px;
+        border-radius: 5px;
+    }
+    #rigth-box.height,
+    #left-box.height {
+        height: 100px;
+    }
+    #rigth-box.color,
+    #left-box.color {
+        background: #f3f3f3;
+        box-shadow: 2px 2px 5px grey;
+        transform: rotateZ(0deg);
+        transition: transform 1s, top 0.5s, left 0.5s, right 0.5s, width 1s, height 1s, background 1s, box-shadow 1s;
+    }
+    #left-box.left {
+        left: 0px;
+    }
+    #rigth-box.right  {
+        right: 20px;
+    }
+    #rigth-box.rotate {
+    transform: rotateZ(360deg);
+    }
+
+
+#rigth-box-image,
+#left-box-text {
+    opacity: 0;
+    transition: opacity 1s, color 1s;
+}
+#left-box-text {
+    text-transform: uppercase;
+    font-size: 24px;
+    text-align: center;
+    display: block;
+    padding-top: 30px;
+    font-family: Verdana;
+    font-weight: bold;
+    color: #385669;
+}
+    #rigth-box-image.visible,
+    #left-box-text.visible {
+        opacity: 1;
+    }
+    #left-box-text.color {
+        color: #a25f5f;
+    }
+
+
+#call-box,
+#call-box2 {
+    width: 400px;
+    margin: 30px auto 0 auto;
+    padding: 20px;
+    background: #678b9a;
+    color: #fff;
+    font-family: Verdana;
+    font-size: 19px;
+    text-align: center;
+    transition: opacity 1s, top 1s, transform 1s;
+    opacity: 0;
+    position: relative;
+    top: 0;
+}
+#call-box2 {
+    background: #9a6767;
+    transform: rotateZ(180deg);
+    margin-top: -100px;
+}
+#call-box.top {
+    top: 200px;
+}
+#call-box.single-element.top {
+    top: 100px;
+}
+#call-box.active,
+#call-box2.active {
+    opacity: 1;
+}
+#call-box2.active.rotate {
+    transform: rotateZ(0deg);
+}
+
+    #call-box .title,
+    #call-box2 .title {
+        font-size: 22px;
+    }
+    #call-box .phone,
+    #call-box2 .phone {
+        font-size: 25px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+
+#info-box {
+    display: inline-block;
+    padding: 17px;
+    background: #7d987b;
+    border: 1px solid #687d6d;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.transition-disable {
+    transition: none !important;
+}

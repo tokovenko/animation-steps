@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Animations. Example 3</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css" media="screen" charset="utf-8">
+        <link href="assets/main.css" media="screen" rel="stylesheet" ></link>
+    </head>
+    <body>
+    <div id="page">
+        <header>
+            <div class="top-bar">
+              <div class="top-bar-left">
+                <ul class="menu">
+                  <li class="menu-text">Animations</li>
+                  <li><a href="example1.html">Example 1</a></li>
+                  <li><a href="example2.html">Example 2</a></li>
+                  <li class="current"><a href="example3.html">Example 3</a></li>
+                  <li><a href="example4.html">Example 4</a></li>
+                  <li><a href="animate-css.html">Animate.css</a></li>
+                </ul>
+              </div>
+              <div class="top-bar-right">
+                <button type="button" class="button" role="run-animation">Start animation</button>
+              </div>
+            </div>
+        </header>
+        <content>
+            <h1 class="subheader">Two parallel animations</h1>
+            <div class="row">
+              <div class="medium-6 columns">
+                  <div style="position: relative; overflow: hidden; width: 100%; height: 800px;">
+                      <div id="left-box">
+                          <span id="left-box-text">Some text</span>
+                      </div>
+                      <div id="rigth-box">
+                          <img src="assets/image.jpg" id="rigth-box-image">
+                      </div>
+                  </div>
+              </div>
+              <div class="medium-6 columns">
+
+    <div class="code-block">
+    <code>
+    <div class="label">Javascript</div>
+    <pre>
+    var rigthBox = document.getElementById('rigth-box');
+    var leftBox = document.getElementById('left-box');
+    var rigthBoxImage = document.getElementById('rigth-box-image');
+    var leftBoxText = document.getElementById('left-box-text');
+
+    var animation = Animation.init();
+
+    animation.add([{
+        el: leftBox,
+        steps: ['active','left','open','height','color']
+    }, {
+        el: leftBoxText,
+        steps: ['visible','color']
+    }]);
+
+    animation.add([{
+        el: rigthBox,
+        steps: ['active','right','open','height','color']
+    }, {
+        el: rigthBoxImage,
+        steps: ['visible']
+    }, {
+        el: rigthBox,
+        steps: ['rotate']
+    }]);
+
+    animation.start();
+    </pre>
+    </code>
+    </div>
+
+    <div class="code-block">
+    <code>
+    <div class="label">CSS</div>
+    <pre>
+    #rigth-box,
+    #left-box {
+        transition: all 1s;
+    }
+    #left-box {
+        left: 280px;
+    }
+    #rigth-box {
+        right: 280px;
+    }
+        #rigth-box.active,
+        #left-box.active {
+            top: 200px;
+        }
+        #rigth-box.open,
+        #left-box.open {
+            width: 250px;
+            border-radius: 5px;
+        }
+        #rigth-box.height,
+        #left-box.height {
+            height: 100px;
+        }
+        #rigth-box.color,
+        #left-box.color {
+            transform: rotateZ(0deg);
+        }
+        #left-box.left {
+            left: 0px;
+        }
+        #rigth-box.right  {
+            right: 20px;
+        }
+        #rigth-box.rotate {
+            transform: rotateZ(360deg);
+        }
+
+    #rigth-box-image,
+    #left-box-text {
+        transition: opacity 1s, color 1s;
+    }
+        #rigth-box-image.visible,
+        #left-box-text.visible {
+            opacity: 1;
+        }
+        #left-box-text.color {
+            color: #a25f5f;
+        }
+    </pre>
+    </code>
+    </div>
+              </div>
+            </div>
+        </content>
+    </div>
+    <script src="animation-steps.js"></script>
+    <script>
+        window.onclick = function(e) {
+            if(e.target.getAttribute('role')=='run-animation') {
+
+                var rigthBox = document.getElementById('rigth-box');
+                var leftBox = document.getElementById('left-box');
+                var rigthBoxImage = document.getElementById('rigth-box-image');
+                var leftBoxText = document.getElementById('left-box-text');
+
+                leftBox.classList.add('transition-disable');
+                leftBox.classList.remove('active');
+                leftBox.classList.remove('left');
+                leftBox.classList.remove('open');
+                leftBox.classList.remove('height');
+                leftBox.classList.remove('color');
+
+                leftBoxText.classList.add('transition-disable');
+                leftBoxText.classList.remove('visible');
+                leftBoxText.classList.remove('color');
+
+                rigthBox.classList.add('transition-disable');
+                rigthBox.classList.remove('active');
+                rigthBox.classList.remove('right');
+                rigthBox.classList.remove('open');
+                rigthBox.classList.remove('height');
+                rigthBox.classList.remove('color');
+                rigthBox.classList.remove('rotate');
+
+                rigthBoxImage.classList.add('transition-disable');
+                rigthBoxImage.classList.remove('visible');
+
+
+                e.target.style.display = 'none';
+
+                setTimeout(function() {
+
+                    leftBox.classList.remove('transition-disable');
+                    leftBoxText.classList.remove('transition-disable');
+                    rigthBox.classList.remove('transition-disable');
+                    rigthBoxImage.classList.remove('transition-disable');
+
+                    var animation = Animation.init();
+
+                    animation.add([{
+                    	el: leftBox,
+                        steps: ['active','left','open','height','color']
+                    }, {
+                        el: leftBoxText,
+                        steps: ['visible','color']
+                    }]);
+
+                    animation.add([{
+                    	el: rigthBox,
+                        steps: ['active','right','open','height','color']
+                    }, {
+                        el: rigthBoxImage,
+                        steps: ['visible']
+                    }, {
+                        el: rigthBox,
+                        steps: ['rotate'],
+                        onEndStep1: function() {
+                            e.target.style.display = 'inline-block';
+                        }
+                    }]);
+
+                    animation.start();
+
+                }, 100);
+            }
+        };
+    </script>
+    </body>
+</html>

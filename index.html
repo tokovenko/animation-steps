@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Animations. Example 1</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css" media="screen" charset="utf-8">
+        <link href="assets/main.css" media="screen" rel="stylesheet" ></link>
+    </head>
+    <body>
+    <div id="page">
+        <header>
+            <div class="top-bar">
+              <div class="top-bar-left">
+                <ul class="menu">
+                  <li class="menu-text">Animations</li>
+                  <li class="current"><a href="example1.html">Example 1</a></li>
+                  <li><a href="example2.html">Example 2</a></li>
+                  <li><a href="example3.html">Example 3</a></li>
+                  <li><a href="example4.html">Example 4</a></li>
+                  <li><a href="animate-css.html">Animate.css</a></li>
+                </ul>
+              </div>
+              <div class="top-bar-right">
+                <button type="button" class="button" role="run-animation">Start animation</button>
+              </div>
+            </div>
+        </header>
+        <content>
+            <h1 class="subheader">One element animation</h1>
+            <div class="row">
+              <div class="medium-6 columns">
+                  <div id="call-box" class="single-element">
+                      <div class="title">CALL NOW</div>
+                      <div class="phone">+ 0 123 456 789</div>
+                  </div>
+              </div>
+              <div class="medium-6 columns">
+
+    <div class="code-block">
+    <code>
+    <div class="label">Javascript</div>
+    <pre>
+    var callBox = document.getElementById('call-box');
+    Animation
+        .init(callBox, ['active','top'])
+        .start();
+    </pre>
+    </code>
+    </div>
+
+    <div class="code-block">
+    <code>
+    <div class="label">CSS</div>
+    <pre>
+    #call-box {
+        transition: opacity 1s, top 1s;
+        opacity: 0;
+        top: 0;
+    }
+    #call-box.active {
+        opacity: 1;
+    }
+    #call-box.top {
+        top: 100px;
+    }
+    </pre>
+    </code>
+    </div>
+              </div>
+            </div>
+        </content>
+    </div>
+    <script src="animation-steps.js"></script>
+    <script>
+        window.onclick = function(e) {
+            if(e.target.getAttribute('role')=='run-animation') {
+                var callBox = document.getElementById('call-box');
+                callBox.classList.add('transition-disable');
+                callBox.classList.remove('active');
+                callBox.classList.remove('top');
+                e.target.style.display = 'none';
+                setTimeout(function() {
+                    callBox.classList.remove('transition-disable');
+                    Animation
+                        .init({
+                            el: callBox,
+                            steps: ['active','top'],
+                            onEndStep2: function() {
+                                e.target.style.display = 'inline-block';
+                            }
+                        })
+                        .start();
+                	// Animation
+                    //     .init(document.getElementById('call-box'), ['active','top'])
+                    //     .start();
+                }, 100);
+            }
+        };
+    </script>
+    </body>
+</html>
